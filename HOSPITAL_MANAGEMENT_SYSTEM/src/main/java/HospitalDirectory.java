@@ -1,39 +1,38 @@
-
 package model;
-
 import java.util.ArrayList;
-
-
-
-/**
+/*
  *
  * @author Shashank
  */
-
-
 public class HospitalDirectory {
-    //
-    private ArrayList<Hospital>Directory;
+    // initialize an array list to store Hospital data in Hospital Directory
+    private ArrayList<Hospital>directory;
     
     public HospitalDirectory(){
-        this.Directory = new ArrayList<Hospital>();
+        this.directory = new ArrayList<Hospital>();
     }
     
+   // getter of ArrayList 
     public ArrayList<Hospital>getDirectory(){
-        return Directory;
+        return directory;
     }
     
+    // setter of ArrayList
     public void setDirectory(ArrayList<Hospital>Directory){
-        this.Directory = Directory;
+        this.directory = Directory;
     }
-/*
-    public Hospital addNewHospital.(){
-        Hospital newHospital = new Hospital();
-        Directory.add(newHospital);
+
+    public Hospital addNewHospital()
+    {
+        //method to create newHospital;
+       Hospital newHospital = new Hospital();
+        directory.add(newHospital);
         return newHospital;
     }
+    
     public void deleteHospital(Hospital hospital){
-        Directory.remove(Hospital);
+        // method to delete hospital
+        directory.remove(hospital);
     }
-*/
+ 
 }

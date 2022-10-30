@@ -20,6 +20,11 @@ public class Doctor {
         return DoctorName;
     }
 
+    @Override
+    public String toString() {
+        return "Doctor{" + "DoctorName=" + DoctorName + '}';
+    }
+
     public void setDoctorName(String DoctorName) {
         this.DoctorName = DoctorName;
     }

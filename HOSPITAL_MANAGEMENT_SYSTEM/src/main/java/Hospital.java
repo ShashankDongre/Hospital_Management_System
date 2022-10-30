@@ -63,5 +63,12 @@ public class Hospital {
     public void setEmail(String Email) {
         this.Email = Email;
     }
+
+    @Override
+    public String toString() {
+        return HospitalName;
+    }
+    
+    
     
 }
