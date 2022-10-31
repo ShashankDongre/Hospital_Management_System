@@ -22,7 +22,7 @@ public class Doctor {
 
     @Override
     public String toString() {
-        return "Doctor{" + "DoctorName=" + DoctorName + '}';
+        return DoctorName;
     }
 
     public void setDoctorName(String DoctorName) {
