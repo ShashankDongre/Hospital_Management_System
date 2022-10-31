@@ -1,9 +1,14 @@
-
 package ui;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 import javax.swing.JTable;
+import model.Hospital;
+import model.HospitalDirectory;
 import javax.swing.table.DefaultTableModel;
+import model.DoctorDirectory;
+
 
 /**
  *
@@ -11,11 +16,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CRUDHospital extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CRUDHospital
-     */
-    public CRUDHospital() {
+    Hospital hospital;
+    HospitalDirectory directory;
+    DoctorDirectory directory1;
+
+    // default constructor
+    public CRUDHospital() {             
+    }
+    
+    // parameterized constructor passing Hospital directory and doctor directory as a parameter
+    public CRUDHospital(HospitalDirectory directory, DoctorDirectory directory1) {
         initComponents();
+
+        this.directory = directory;
+        this.directory1 = directory1;
+        
+        this.setTitle("HOSPITAL MANAGEMENT SYSTEM");   // sets title of the this
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //exit out of application
+        this.setSize(1300, 680);   //sets x and y dimeensions of this
+        this.getContentPane().setBackground(Color.darkGray);   //change color of background
+        this.setVisible(true); // makes this visible
+        
     }
 
     /**
@@ -32,11 +53,10 @@ public class CRUDHospital extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         controlPanel = new javax.swing.JPanel();
         BtnHome = new javax.swing.JButton();
-        BtnHospitalAdmin = new javax.swing.JButton();
-        BtnSystemAdmin = new javax.swing.JButton();
-        BtnCommunityAdmin = new javax.swing.JButton();
+        btnHospital = new javax.swing.JButton();
+        btnDoctor = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        lblHospitalAdminLogin = new javax.swing.JLabel();
+        lblHospitalAdminPage = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         lblAddNewHospital = new javax.swing.JLabel();
         lblHospitalName = new javax.swing.JLabel();
@@ -56,11 +76,10 @@ public class CRUDHospital extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnCreateDoctor = new javax.swing.JButton();
-        btnViewDoctor = new javax.swing.JButton();
-        btnCreatePatient = new javax.swing.JButton();
-        btnViewPatient = new javax.swing.JButton();
         lblHospitalEmail = new javax.swing.JLabel();
         txtHospitalEmail = new javax.swing.JTextField();
+        btnClear = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1300, 800));
@@ -79,30 +98,25 @@ public class CRUDHospital extends javax.swing.JFrame {
             }
         });
 
-        BtnHospitalAdmin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        BtnHospitalAdmin.setText("Community Admin");
-        BtnHospitalAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        BtnHospitalAdmin.addActionListener(new java.awt.event.ActionListener() {
+        btnHospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnHospital.setText("Hospital ");
+        btnHospital.setMaximumSize(new java.awt.Dimension(49, 26));
+        btnHospital.setMinimumSize(new java.awt.Dimension(49, 26));
+        btnHospital.setPreferredSize(new java.awt.Dimension(49, 26));
+        btnHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHospitalAdminActionPerformed(evt);
+                btnHospitalActionPerformed(evt);
             }
         });
 
-        BtnSystemAdmin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        BtnSystemAdmin.setText("Hospital Admin");
-        BtnSystemAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        BtnSystemAdmin.addActionListener(new java.awt.event.ActionListener() {
+        btnDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnDoctor.setText("Doctor");
+        btnDoctor.setMaximumSize(new java.awt.Dimension(49, 26));
+        btnDoctor.setMinimumSize(new java.awt.Dimension(49, 26));
+        btnDoctor.setPreferredSize(new java.awt.Dimension(49, 26));
+        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSystemAdminActionPerformed(evt);
-            }
-        });
-
-        BtnCommunityAdmin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        BtnCommunityAdmin.setText("System Admin");
-        BtnCommunityAdmin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        BtnCommunityAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCommunityAdminActionPerformed(evt);
+                btnDoctorActionPerformed(evt);
             }
         });
 
@@ -111,25 +125,24 @@ public class CRUDHospital extends javax.swing.JFrame {
         controlPanelLayout.setHorizontalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
-                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnSystemAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnCommunityAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BtnHospitalAdmin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(controlPanelLayout.createSequentialGroup()
+                        .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         controlPanelLayout.setVerticalGroup(
             controlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(controlPanelLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(BtnHome)
-                .addGap(34, 34, 34)
-                .addComponent(BtnSystemAdmin)
-                .addGap(35, 35, 35)
-                .addComponent(BtnHospitalAdmin)
-                .addGap(35, 35, 35)
-                .addComponent(BtnCommunityAdmin)
-                .addContainerGap(365, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -145,7 +158,7 @@ public class CRUDHospital extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 801, Short.MAX_VALUE)
+            .addGap(0, 816, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -155,9 +168,9 @@ public class CRUDHospital extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel3);
 
-        lblHospitalAdminLogin.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        lblHospitalAdminLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHospitalAdminLogin.setText("HOSPITAL DATABASE");
+        lblHospitalAdminPage.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lblHospitalAdminPage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHospitalAdminPage.setText("HOSPITAL PAGE");
 
         lblAddNewHospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblAddNewHospital.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -202,13 +215,13 @@ public class CRUDHospital extends javax.swing.JFrame {
         lblHospitalDetails.setText("Hospital Details");
 
         tblHospitalDetails.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tblHospitalDetails.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        tblHospitalDetails.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tblHospitalDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                " Name", "Address", "City", "Zip Code", "Phone", "Email"
+                "Name", "Address", "City", "Zip Code", "Phone", "Email"
             }
         ));
         tblHospitalDetails.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -250,33 +263,6 @@ public class CRUDHospital extends javax.swing.JFrame {
             }
         });
 
-        btnViewDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnViewDoctor.setText("View Doctor");
-        btnViewDoctor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnViewDoctor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewDoctorActionPerformed(evt);
-            }
-        });
-
-        btnCreatePatient.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnCreatePatient.setText("Create Patient");
-        btnCreatePatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnCreatePatient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreatePatientActionPerformed(evt);
-            }
-        });
-
-        btnViewPatient.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnViewPatient.setText("View Patient");
-        btnViewPatient.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnViewPatient.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewPatientActionPerformed(evt);
-            }
-        });
-
         lblHospitalEmail.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblHospitalEmail.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblHospitalEmail.setText("Email");
@@ -288,6 +274,29 @@ public class CRUDHospital extends javax.swing.JFrame {
             }
         });
 
+        btnClear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnClear.setText("Clear");
+        btnClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnView.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnView.setText("View");
+        btnView.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnViewMouseClicked(evt);
+            }
+        });
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -296,7 +305,7 @@ public class CRUDHospital extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(lblHospitalAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblHospitalAdminPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jSeparator1)))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -308,26 +317,14 @@ public class CRUDHospital extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblHospitalEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(136, 136, 136)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnCreatePatient, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnViewPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnCreateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnViewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(133, 133, 133)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(98, 98, 98))
+                        .addComponent(lblHospitalEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(369, 369, 369)
+                        .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -347,20 +344,29 @@ public class CRUDHospital extends javax.swing.JFrame {
                                     .addComponent(txtHospitalName, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtHospitalAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(lblHospitalPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblHospitalPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnClear, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtHospitalEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtHospitalPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(txtHospitalPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(46, Short.MAX_VALUE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(277, 277, 277)
+                                .addComponent(btnCreateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblHospitalAdminLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblHospitalAdminPage, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -393,25 +399,22 @@ public class CRUDHospital extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblHospitalEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtHospitalEmail)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblHospitalEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtHospitalEmail))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnSave))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreateDoctor)
-                            .addComponent(btnViewDoctor))))
-                .addGap(10, 10, 10)
+                            .addComponent(btnView)
+                            .addComponent(btnUpdate)
+                            .addComponent(btnDelete))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreatePatient)
-                    .addComponent(btnViewPatient))
-                .addGap(252, 252, 252))
+                    .addComponent(btnCreateDoctor)
+                    .addComponent(btnSave)
+                    .addComponent(btnClear))
+                .addGap(319, 319, 319))
         );
 
         jSplitPane1.setRightComponent(jPanel4);
@@ -441,184 +444,183 @@ public class CRUDHospital extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHomeActionPerformed
-        // HOME button action performed code here:
-        MainJFrame obj = new MainJFrame();
-        obj.setVisible(true);
-        dispose();
-        
-    }//GEN-LAST:event_BtnHomeActionPerformed
-
-    private void BtnHospitalAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHospitalAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnHospitalAdminActionPerformed
-
-    private void BtnSystemAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSystemAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnSystemAdminActionPerformed
-
-    private void BtnCommunityAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCommunityAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCommunityAdminActionPerformed
-
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // SAVE button action performed code here:
-        // code to load data into table with no null validations
-        
-        if (txtHospitalName.getText().equals(" ")|| txtHospitalAddress.getText().equals(" ") || txtHospitalCity.getText().equals(" ")|| txtHospitalZipCode.getText().equals(" ")|| txtHospitalPhone.getText().equals(" ")|| txtHospitalEmail.getText().equals(" ")){
-            JOptionPane.showMessageDialog(this, "No field should be empty");
-        }
-        else{
-                String data[] = {txtHospitalName.getText(), txtHospitalAddress.getText(), txtHospitalCity.getText(), txtHospitalZipCode.getText(), txtHospitalPhone.getText(), txtHospitalEmail.getText()};
-                DefaultTableModel tblModel = (DefaultTableModel)tblHospitalDetails.getModel(); 
-                // add string array data
-                tblModel.addRow(data);
-                JOptionPane.showMessageDialog(rootPane, "Hospital details added successfully!");
-                
-                
-                //clear text for new entries
-                
-                txtHospitalName.setText(" ");
-                txtHospitalAddress.setText(" ");
-                txtHospitalCity.setText(" ");
-                txtHospitalZipCode.setText(" ");
-                txtHospitalPhone.setText(" ");
-                txtHospitalEmail.setText(" ");
-        
-        }
-        
-        
-        
-        
+//         SAVE button action performed code here:        
+        hospital = directory.addNewHospital();
+
+        hospital.setHospitalName(txtHospitalName.getText());
+        hospital.setAddress(txtHospitalAddress.getText());
+        hospital.setCity(txtHospitalCity.getText());
+        hospital.setZipCode(txtHospitalZipCode.getText());
+        hospital.setPhone(txtHospitalPhone.getText());
+        hospital.setEmail(txtHospitalEmail.getText());
+
+        populateTable();
+
+        //clear text for new entries
+        txtHospitalName.setText("");
+        txtHospitalAddress.setText("");
+        txtHospitalCity.setText("");
+        txtHospitalZipCode.setText("");
+        txtHospitalPhone.setText("");
+        txtHospitalEmail.setText("");
+        JOptionPane.showMessageDialog(this, "Hospital details successfully added to the hospital directory");
     }//GEN-LAST:event_btnSaveActionPerformed
+
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // UPDATE functionality code here:
         // once data is set on textfield apply update operation
+        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update");
+            return;
+        }
         
         // Get table model
-        DefaultTableModel tblModel = (DefaultTableModel)tblHospitalDetails.getModel();
-        if(tblHospitalDetails.getSelectedRowCount()== 1){
-            // if single row is selected
-            String HospitalName = txtHospitalName.getText();
-            String HospitalAddress = txtHospitalAddress.getText();
-            String HospitalCity = txtHospitalCity.getText();
-            String HospitalZipCode = txtHospitalZipCode.getText();
-            String HospitalPhone = txtHospitalPhone.getText();
-            String HospitalEmail = txtHospitalEmail.getText();
-            
-            // set updated value on the table row
-            tblModel.setValueAt(HospitalName, tblHospitalDetails.getSelectedRow(), 0);
-            tblModel.setValueAt(HospitalAddress, tblHospitalDetails.getSelectedRow(), 1);
-            tblModel.setValueAt(HospitalCity, tblHospitalDetails.getSelectedRow(), 2);
-            tblModel.setValueAt(HospitalZipCode, tblHospitalDetails.getSelectedRow(), 3);
-            tblModel.setValueAt(HospitalPhone, tblHospitalDetails.getSelectedRow(), 4);
-            tblModel.setValueAt(HospitalEmail, tblHospitalDetails.getSelectedRow(), 5);
-            
-            JOptionPane.showMessageDialog(this, "Data successfully updated!");
-           
-        }
+        DefaultTableModel tblModel = (DefaultTableModel) tblHospitalDetails.getModel();
+        Hospital selectedHospital = (Hospital) tblModel.getValueAt(selectedRowIndex, 0);
+        // set data from text field to the selected hospital respective place
+        selectedHospital.setHospitalName(txtHospitalName.getText());
+        selectedHospital.setAddress(txtHospitalAddress.getText());
+        selectedHospital.setCity(txtHospitalCity.getText());
+        selectedHospital.setZipCode(txtHospitalZipCode.getText());
+        selectedHospital.setPhone(txtHospitalPhone.getText());
+        selectedHospital.setEmail(txtHospitalEmail.getText());
         
-        else {
-            if (tblHospitalDetails.getSelectedRowCount()== 0){
-                JOptionPane.showMessageDialog(this, "Table is empty");
-            }
-            else{
-                JOptionPane.showMessageDialog(this, "Please select a single row to update");
-            }
-        }
+        tblModel.setValueAt(selectedHospital.getHospitalName(), selectedRowIndex, 0);
+        tblModel.setValueAt(selectedHospital.getAddress(), selectedRowIndex, 1);
+        tblModel.setValueAt(selectedHospital.getCity(), selectedRowIndex, 2);
+        tblModel.setValueAt(selectedHospital.getZipCode(), selectedRowIndex, 3);
+        tblModel.setValueAt(selectedHospital.getPhone(), selectedRowIndex, 4);
+        tblModel.setValueAt(selectedHospital.getEmail(), selectedRowIndex, 5);
         
-       
+        JOptionPane.showMessageDialog(this, "Hospital details updated successfully in the hospital directory");
+                
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // DELETE functionality code here:
-        int i = tblHospitalDetails.getSelectedRow();
-        if(i>0){
-            DefaultTableModel tblModel = (DefaultTableModel)tblHospitalDetails.getModel();
-            tblModel.removeRow(i);
-            JOptionPane.showMessageDialog(rootPane, "Data deletion successful!");
+        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
         
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Please select a row to delete");
-        }
-        
+        // invoke the table model
+        DefaultTableModel tblModel = (DefaultTableModel) tblHospitalDetails.getModel();
+        Hospital selectedHospital = (Hospital) tblModel.getValueAt(selectedRowIndex, 0);
+        directory.deleteHospital(selectedHospital);
+        JOptionPane.showMessageDialog(this, "Hospital data successfully deleted from the hospital directory");
+            
+        populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
+    
+    private void populateTable() {
+        //invoke the table model
+        DefaultTableModel tblmodel = (DefaultTableModel) tblHospitalDetails.getModel();
+        tblmodel.setRowCount(0);
+
+        for (Hospital hospital : directory.getDirectory()) {
+            
+
+            Object[] row = new Object[6];
+            row[0] = hospital;
+            row[1] = hospital.getAddress();
+            row[2] = hospital.getCity();
+            row[3] = hospital.getZipCode();
+            row[4] = hospital.getPhone();
+            row[5] = hospital.getEmail();
+
+            tblmodel.addRow(row);
+        }
+    }
 
     private void btnCreateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDoctorActionPerformed
         // CREATE doctor directing to next page here:
-        CreateDoctor obj = new CreateDoctor();
+        CreateDoctor obj = new CreateDoctor(directory1);
         obj.setVisible(true);
-        dispose();
-        
-        
+        //dispose();
     }//GEN-LAST:event_btnCreateDoctorActionPerformed
-
-    private void btnViewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDoctorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewDoctorActionPerformed
-
-    private void btnCreatePatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreatePatientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCreatePatientActionPerformed
-
-    private void btnViewPatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewPatientActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnViewPatientActionPerformed
 
     private void txtHospitalEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHospitalEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtHospitalEmailActionPerformed
+
+    private void tblHospitalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHospitalDetailsMouseClicked
+        // Hospital details table mouse click event code here:
+        // when row is selected, data will set to textfield for update
+        //populateDetails(tblHospitalDetails);
+
+//        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
+//        // invoke the table model
+//        DefaultTableModel tblModel = (DefaultTableModel) tblHospitalDetails.getModel();
+//        // get value from respective fields and set it to String Attributes
+//
+//        txtHospitalName.setText(tblModel.getValueAt(selectedRowIndex, 0).toString());
+//        txtHospitalAddress.setText(tblModel.getValueAt(selectedRowIndex, 1).toString());
+//        txtHospitalCity.setText(tblModel.getValueAt(selectedRowIndex, 2).toString());
+//        txtHospitalZipCode.setText(tblModel.getValueAt(selectedRowIndex, 3).toString());
+//        txtHospitalPhone.setText(tblModel.getValueAt(selectedRowIndex, 4).toString());
+//        txtHospitalEmail.setText(tblModel.getValueAt(selectedRowIndex, 5).toString());
+
+    }//GEN-LAST:event_tblHospitalDetailsMouseClicked
+
+    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
+        // UPDATE mouse click event code here:
+        // when row is selected, data will set tinto textfield for update
+//        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
+//
+//        DefaultTableModel tblModel = (DefaultTableModel) tblHospitalDetails.getModel();
+//        // 
+//        txtHospitalName.setText(tblModel.getValueAt(selectedRowIndex, 0).toString());
+//        txtHospitalAddress.setText(tblModel.getValueAt(selectedRowIndex, 1).toString());
+//        txtHospitalCity.setText(tblModel.getValueAt(selectedRowIndex, 2).toString());
+//        txtHospitalZipCode.setText(tblModel.getValueAt(selectedRowIndex, 3).toString());
+//        txtHospitalPhone.setText(tblModel.getValueAt(selectedRowIndex, 4).toString());
+//        txtHospitalEmail.setText(tblModel.getValueAt(selectedRowIndex, 5).toString());
+
+    }//GEN-LAST:event_btnUpdateMouseClicked
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // CANCEL or CLEAR button code here:
+        // call function to clear input fields
+        clearfields();
+
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnViewMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewMouseClicked
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // VIEW button code here:
+        populateDetails(tblHospitalDetails);
+ 
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void BtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHomeActionPerformed
+        // HOME button action performed code here:
+        MainJFrame obj = new MainJFrame();
+        obj.setVisible(true);
+        //dispose();
+    }//GEN-LAST:event_BtnHomeActionPerformed
 
     private void BtnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomeMouseClicked
         // HOME button mouse clicked code here:
         MainJFrame obj = new MainJFrame();
         obj.setVisible(true);
         dispose();
-        
-        
+
     }//GEN-LAST:event_BtnHomeMouseClicked
 
-    private void tblHospitalDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHospitalDetailsMouseClicked
+    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
         // TODO add your handling code here:
-        // set data to textfield
-        
-        DefaultTableModel tblModel = (DefaultTableModel)tblHospitalDetails.getModel();
-        // set data to text field when raw is selected
-        
-        String tblHospitalName = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        String tblAddress = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        String tblCity = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        String tblZipCode = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        String tblPhone = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        String tblEmail = tblModel.getValueAt(tblHospitalDetails.getSelectedRow(), 0).toString();
-        
-        //set to text field
-        txtHospitalName.setText(tblHospitalName);
-        txtHospitalAddress.setText(tblAddress);
-        txtHospitalCity.setText(tblCity);
-        txtHospitalZipCode.setText(tblZipCode);
-        txtHospitalPhone.setText(tblPhone);
-        txtHospitalEmail.setText(tblEmail);
-       
-    }//GEN-LAST:event_tblHospitalDetailsMouseClicked
+    }//GEN-LAST:event_btnHospitalActionPerformed
 
-    private void btnUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateMouseClicked
-        // UPDATE mouse click event code here:
-        // when row is selected, data will set to textfield for update
-        int i = tblHospitalDetails.getSelectedRow();
-       
-        DefaultTableModel tblModel = (DefaultTableModel)tblHospitalDetails.getModel();
-        // 
-        txtHospitalName.setText(tblModel.getValueAt(i, 0).toString());
-        txtHospitalAddress.setText(tblModel.getValueAt(i, 1).toString());
-        txtHospitalCity.setText(tblModel.getValueAt(i, 2).toString());
-        txtHospitalZipCode.setText(tblModel.getValueAt(i, 3).toString());
-        txtHospitalPhone.setText(tblModel.getValueAt(i, 4).toString());
-        txtHospitalEmail.setText(tblModel.getValueAt(i, 5).toString());
-        
-    }//GEN-LAST:event_btnUpdateMouseClicked
+    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoctorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -648,25 +650,58 @@ public class CRUDHospital extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CRUDHospital().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CRUDHospital().setVisible(true);
         });
     }
 
+    private void clearfields() {
+        txtHospitalName.setText("");
+        txtHospitalAddress.setText("");
+        txtHospitalCity.setText("");
+        txtHospitalZipCode.setText("");
+        txtHospitalPhone.setText("");
+        txtHospitalEmail.setText("");
+
+    }
+
+    private void viewHospitalDetails(JTable tblHospitalDetails) {
+        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            
+        } else {
+                if (selectedRowIndex == 1) {
+                DefaultTableModel tblModel = (DefaultTableModel) tblHospitalDetails.getModel();
+                Hospital selectedHospital = (Hospital) tblModel.getValueAt(selectedRowIndex, 0);
+
+                txtHospitalName.setText(selectedHospital.getHospitalName());
+                txtHospitalAddress.setText(selectedHospital.getAddress());
+                txtHospitalCity.setText(selectedHospital.getCity());
+                txtHospitalZipCode.setText(selectedHospital.getZipCode());
+                txtHospitalPhone.setText(selectedHospital.getPhone());
+                txtHospitalEmail.setText(selectedHospital.getEmail());
+
+            }
+        }
+}     
+
+        
+
+    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnCommunityAdmin;
     private javax.swing.JButton BtnHome;
-    private javax.swing.JButton BtnHospitalAdmin;
-    private javax.swing.JButton BtnSystemAdmin;
+    private javax.swing.JButton btnClear;
     private javax.swing.JButton btnCreateDoctor;
-    private javax.swing.JButton btnCreatePatient;
     private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnDoctor;
+    private javax.swing.JButton btnHospital;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnViewDoctor;
-    private javax.swing.JButton btnViewPatient;
+    private javax.swing.JButton btnView;
     private javax.swing.JPanel controlPanel;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -675,7 +710,7 @@ public class CRUDHospital extends javax.swing.JFrame {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JLabel lblAddNewHospital;
     private javax.swing.JLabel lblHospitalAddress;
-    private javax.swing.JLabel lblHospitalAdminLogin;
+    private javax.swing.JLabel lblHospitalAdminPage;
     private javax.swing.JLabel lblHospitalCity;
     private javax.swing.JLabel lblHospitalDetails;
     private javax.swing.JLabel lblHospitalEmail;
@@ -691,4 +726,26 @@ public class CRUDHospital extends javax.swing.JFrame {
     private javax.swing.JTextField txtHospitalPhone;
     private javax.swing.JTextField txtHospitalZipCode;
     // End of variables declaration//GEN-END:variables
+
+   
+    private void populateDetails(JTable tblHospitalDetails) {
+        int selectedRowIndex = tblHospitalDetails.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        DefaultTableModel tblmodel = (DefaultTableModel) tblHospitalDetails.getModel();
+        Hospital selectedHospital = (Hospital) tblmodel.getValueAt(selectedRowIndex, 0);
+
+        txtHospitalName.setText(selectedHospital.getHospitalName());
+        txtHospitalAddress.setText(selectedHospital.getAddress());
+        txtHospitalCity.setText(selectedHospital.getCity());
+        txtHospitalZipCode.setText(selectedHospital.getZipCode());
+        txtHospitalPhone.setText(selectedHospital.getPhone());
+        txtHospitalEmail.setText(selectedHospital.getEmail());
+       
+    }
+    
+    
 }

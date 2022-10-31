@@ -4,31 +4,31 @@ package ui;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.DoctorDirectory;
 import model.HospitalDirectory;
+import model.PersonDirectory;
 
 /**
  *
  * @author Shashank
  */
-public class HospitalAdminLoginPage extends javax.swing.JFrame {
-
-    /**
-     * Creates new form createHospital
-     */
+public class CommunityAdminLoginPage extends javax.swing.JFrame {
     
+    /**
+     * Creates new form CommunityAdminLoginPage
+     */
     HospitalDirectory directory;
-    DoctorDirectory directory1;
+    PersonDirectory personDirectory;
+    
     
     //default constructor
-    public HospitalAdminLoginPage(){}
+    public CommunityAdminLoginPage(){
+    }
     
     //parameterized constructor
-    public HospitalAdminLoginPage(HospitalDirectory directory, DoctorDirectory directory1) {
+    public CommunityAdminLoginPage(HospitalDirectory directory,PersonDirectory directory2 ) {
         initComponents();
-        
         this.directory = directory;
-        this.directory1 = directory1;
+        this.personDirectory = directory2;
         
         this.setTitle("HOSPITAL MANAGEMENT SYSTEM");   // sets title of the this
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //exit out of application
@@ -63,6 +63,7 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
         btnNewAdminSignUp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1630, 709));
 
         BtnHome.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         BtnHome.setText("Home");
@@ -122,14 +123,14 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
                 .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(406, Short.MAX_VALUE))
+                .addContainerGap(382, Short.MAX_VALUE))
         );
 
         splitpane1.setLeftComponent(jPanel2);
 
         lblHospitalAdminLogin.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         lblHospitalAdminLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblHospitalAdminLogin.setText("HOSPITAL ADMIN LOGIN");
+        lblHospitalAdminLogin.setText("COMMUNITY ADMIN LOGIN");
 
         lblUsername.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -184,7 +185,7 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblHospitalAdminLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(657, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +220,7 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
                     .addComponent(btnLogin))
@@ -254,53 +255,51 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-// Login button action performed:
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+
+    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsernameActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // Login button action performed:
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        
+
         if (username.equals("admin")&& password.equals("admin")){
-        CRUDHospital obj = new CRUDHospital(directory, directory1);
-        obj.setVisible(true);
+            CommunityAdminPage obj = new CommunityAdminPage(directory, personDirectory);
+            obj.setVisible(true);
             dispose();
-            
+
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Username or Password Incorrect!");
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         // CANCEL or CLEAR button code here:
         // call function to clear input fields
-        clearfields();
-         
+        //clearfields();
+
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void btnNewAdminSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewAdminSignUpActionPerformed
         // TODO add your handling code here:
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        
-        
-        
+
         if (username.equals("admin")&& password.equals("admin")){
-        CRUDHospital obj = new CRUDHospital(directory,directory1);
-        obj.setVisible(true);
+            CommunityAdminPage obj = new CommunityAdminPage(directory,personDirectory);
+            obj.setVisible(true);
             dispose();
-            
+
         }
         else{
             JOptionPane.showMessageDialog(rootPane, "Username or Password Incorrect!");
         }
-        
-    }//GEN-LAST:event_btnNewAdminSignUpActionPerformed
 
-    private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsernameActionPerformed
+    }//GEN-LAST:event_btnNewAdminSignUpActionPerformed
 
     private void BtnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomeMouseClicked
         // HOME button mouse clicked code here:
@@ -328,8 +327,11 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-      
-        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -338,34 +340,24 @@ public class HospitalAdminLoginPage extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HospitalAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommunityAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HospitalAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommunityAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HospitalAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommunityAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HospitalAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CommunityAdminLoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new HospitalAdminLoginPage().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CommunityAdminLoginPage().setVisible(true);
+            }
         });
     }
-    
-    
-    private void clearfields(){
-        txtUsername.setText("");
-        txtPassword.setText("");
-        
-    }
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnHome;
     private javax.swing.JButton btnCancel;

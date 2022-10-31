@@ -1,11 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ui;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import model.Doctor;
+import model.DoctorDirectory;
+
 
 /**
  *
@@ -13,11 +16,17 @@ import javax.swing.JFrame;
  */
 public class CreateDoctor extends javax.swing.JFrame {
 
-    /**
-     * Creates new form createDoctor
-     */
-    public CreateDoctor() {
+    Doctor doctor;
+    DoctorDirectory directory1;
+    
+     // default constructor
+    public CreateDoctor() {             
+    }
+    
+    // parameterized constructor passing Doctor directory as a parameter
+    public CreateDoctor(DoctorDirectory directory1) {
         initComponents();
+        this.directory1 = directory1;
         
         this.setTitle("HOSPITAL MANAGEMENT SYSTEM");   // sets title of the this
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   //exit out of application
@@ -26,7 +35,9 @@ public class CreateDoctor extends javax.swing.JFrame {
         this.setVisible(true); // makes this visible
         
     }
-
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,21 +47,492 @@ public class CreateDoctor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        splitPane = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel3 = new javax.swing.JPanel();
+        BtnHome = new javax.swing.JButton();
+        btnHospital = new javax.swing.JButton();
+        btnDoctor = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        lblDoctorDatabase = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        lblAddNewDoctor = new javax.swing.JLabel();
+        lblDoctorName = new javax.swing.JLabel();
+        lblDoctorId = new javax.swing.JLabel();
+        txtDoctorId = new javax.swing.JTextField();
+        lblDoctorSpecialization = new javax.swing.JLabel();
+        lblDoctorExperience = new javax.swing.JLabel();
+        lblDoctorPhone = new javax.swing.JLabel();
+        txtDoctorPhone = new javax.swing.JTextField();
+        btnSave = new javax.swing.JButton();
+        txtDoctorName = new javax.swing.JTextField();
+        lblDoctorlDetails = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblDoctorDetails = new javax.swing.JTable();
+        btnUpdateDoctor = new javax.swing.JButton();
+        btnViewDoctor = new javax.swing.JButton();
+        jComboBoxSpecialization = new javax.swing.JComboBox<>();
+        jComboBoxDoctorExperience = new javax.swing.JComboBox<>();
+        lblDoctorGender = new javax.swing.JLabel();
+        jComboBoxGender = new javax.swing.JComboBox<>();
+        btnClear = new javax.swing.JButton();
+        btnDeleteDoctor = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        BtnHome.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        BtnHome.setText("Home");
+        BtnHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        BtnHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnHomeMouseClicked(evt);
+            }
+        });
+        BtnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHomeActionPerformed(evt);
+            }
+        });
+
+        btnHospital.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnHospital.setText("Hospital ");
+        btnHospital.setMaximumSize(new java.awt.Dimension(49, 26));
+        btnHospital.setMinimumSize(new java.awt.Dimension(49, 26));
+        btnHospital.setPreferredSize(new java.awt.Dimension(49, 26));
+        btnHospital.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHospitalActionPerformed(evt);
+            }
+        });
+
+        btnDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnDoctor.setText("Doctor");
+        btnDoctor.setMaximumSize(new java.awt.Dimension(49, 26));
+        btnDoctor.setMinimumSize(new java.awt.Dimension(49, 26));
+        btnDoctor.setPreferredSize(new java.awt.Dimension(49, 26));
+        btnDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDoctorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnDoctor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHospital, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(BtnHome)
+                .addGap(47, 47, 47)
+                .addComponent(btnHospital, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(btnDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(513, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(jPanel3);
+
+        lblDoctorDatabase.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        lblDoctorDatabase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorDatabase.setText("DOCTOR DATABASE");
+
+        lblAddNewDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblAddNewDoctor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAddNewDoctor.setText("Add New Doctor");
+
+        lblDoctorName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorName.setText("Doctor Name");
+        lblDoctorName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblDoctorId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorId.setText("ID");
+        lblDoctorId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblDoctorSpecialization.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorSpecialization.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorSpecialization.setText("Specialization");
+        lblDoctorSpecialization.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblDoctorExperience.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorExperience.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorExperience.setText("Experience");
+        lblDoctorExperience.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblDoctorPhone.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorPhone.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorPhone.setText("Phone");
+        lblDoctorPhone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnSave.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnSave.setText("Save");
+        btnSave.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
+
+        lblDoctorlDetails.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorlDetails.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorlDetails.setText("Doctor Details");
+
+        tblDoctorDetails.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tblDoctorDetails.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        tblDoctorDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                " Name", " ID", "Gender", "Specialization", "Experience", "Phone"
+            }
+        ));
+        tblDoctorDetails.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDoctorDetailsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblDoctorDetails);
+
+        btnUpdateDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnUpdateDoctor.setText("Update");
+        btnUpdateDoctor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnUpdateDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateDoctorActionPerformed(evt);
+            }
+        });
+
+        btnViewDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnViewDoctor.setText("View ");
+        btnViewDoctor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnViewDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewDoctorActionPerformed(evt);
+            }
+        });
+
+        jComboBoxSpecialization.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBoxSpecialization.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "General Physician", "Pathologist", "Pediatrician", "Neurologist", "Surgeon", "Cardiologist", "Oncologist", "Dermatalogist", "Psychologist" }));
+        jComboBoxSpecialization.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxSpecializationMouseClicked(evt);
+            }
+        });
+
+        jComboBoxDoctorExperience.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBoxDoctorExperience.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11-15", "16-20", "21-25", "25+" }));
+
+        lblDoctorGender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lblDoctorGender.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblDoctorGender.setText("Gender");
+        lblDoctorGender.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jComboBoxGender.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBoxGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other", "Can't Say", " " }));
+        jComboBoxGender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxGenderActionPerformed(evt);
+            }
+        });
+
+        btnClear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnClear.setText("Clear");
+        btnClear.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
+        btnDeleteDoctor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnDeleteDoctor.setText("Delete");
+        btnDeleteDoctor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDeleteDoctor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteDoctorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(lblDoctorDatabase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jSeparator1)))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(lblAddNewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(257, 257, 257)
+                .addComponent(lblDoctorlDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblDoctorPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDoctorExperience, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDoctorId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(lblDoctorName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                        .addComponent(lblDoctorGender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDoctorSpecialization, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDoctorName, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(txtDoctorId, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .addComponent(jComboBoxGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxSpecialization, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxDoctorExperience, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDoctorPhone))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnViewDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdateDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteDoctor, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblDoctorDatabase, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblAddNewDoctor)
+                    .addComponent(lblDoctorlDetails))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnUpdateDoctor)
+                            .addComponent(btnViewDoctor)
+                            .addComponent(btnDeleteDoctor))
+                        .addGap(332, 332, 332))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDoctorName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDoctorName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDoctorId)
+                            .addComponent(lblDoctorId, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDoctorGender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDoctorSpecialization, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDoctorExperience, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxDoctorExperience, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtDoctorPhone)
+                            .addComponent(lblDoctorPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSave)
+                            .addComponent(btnClear))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+
+        jSplitPane1.setRightComponent(jPanel4);
+
+        javax.swing.GroupLayout splitPaneLayout = new javax.swing.GroupLayout(splitPane);
+        splitPane.setLayout(splitPaneLayout);
+        splitPaneLayout.setHorizontalGroup(
+            splitPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1)
+        );
+        splitPaneLayout.setVerticalGroup(
+            splitPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // SAVE button action performed code here:
+        doctor = directory1.adddNewDoctor();
+        
+        doctor.setDoctorName(txtDoctorName.getText());
+        doctor.setDoctorId(txtDoctorId.getText());
+        doctor.setDoctorGender(jComboBoxGender.getSelectedItem().toString());
+        doctor.setDoctorSpecialization(jComboBoxSpecialization.getSelectedItem().toString());
+        doctor.setDoctorExperience(jComboBoxDoctorExperience.getSelectedItem().toString());
+        doctor.setDoctorPhone(txtDoctorPhone.getText());
+        
+        populateTable();
+        //clear text for new entries
+        txtDoctorName.setText("");
+        txtDoctorId.setText("");
+        jComboBoxGender.setSelectedItem("");
+        jComboBoxSpecialization.setSelectedItem("");
+        jComboBoxDoctorExperience.setSelectedItem("");
+        txtDoctorPhone.setText("");
+        JOptionPane.showMessageDialog(this, "Doctor details successfully added to the doctor directory");
+       
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnUpdateDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateDoctorActionPerformed
+        // UPDATE functionality code here:
+        // once data is set on textfield apply update operation
+        
+        // Get table model
+        DefaultTableModel tblModel = (DefaultTableModel)tblDoctorDetails.getModel();
+        if(tblDoctorDetails.getSelectedRowCount()== 1){
+            // if single row is selected
+            String DoctorName = txtDoctorName.getText();
+            String DoctorId = txtDoctorId.getText();
+            String DoctorGender = jComboBoxGender.getSelectedItem().toString();
+            String DoctorSpecialization = jComboBoxSpecialization.getSelectedItem().toString();
+            String DoctorExperience = jComboBoxDoctorExperience.getSelectedItem().toString();
+            String DoctorPhone = txtDoctorPhone.getText();
+            
+            // set updated value on the table row
+            tblModel.setValueAt(DoctorName, tblDoctorDetails.getSelectedRow(), 0);
+            tblModel.setValueAt(DoctorId, tblDoctorDetails.getSelectedRow(), 1);
+            tblModel.setValueAt(DoctorGender, tblDoctorDetails.getSelectedRow(), 2);
+            tblModel.setValueAt(DoctorSpecialization, tblDoctorDetails.getSelectedRow(), 3);
+            tblModel.setValueAt(DoctorExperience, tblDoctorDetails.getSelectedRow(), 4);
+            tblModel.setValueAt(DoctorPhone, tblDoctorDetails.getSelectedRow(), 5);
+            
+            JOptionPane.showMessageDialog(this, "Doctor data successfully updated in the doctor directory");
+            
+        }
+        else{if (tblDoctorDetails.getSelectedRowCount()== 0){
+               JOptionPane.showMessageDialog(this, "Please select a single row to update");
+            }
+            
+        }
+        
+        
+    }//GEN-LAST:event_btnUpdateDoctorActionPerformed
+
+    private void btnViewDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDoctorActionPerformed
+        // TODO add your handling code here:
+        populateDetails(tblDoctorDetails);
+    }//GEN-LAST:event_btnViewDoctorActionPerformed
+
+    private void jComboBoxSpecializationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxSpecializationMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBoxSpecializationMouseClicked
+
+    private void tblDoctorDetailsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDoctorDetailsMouseClicked
+        
+        // UPDATE table mouse click event code here:
+        // when row is selected, data will set to textfield for update
+        
+        int i = tblDoctorDetails.getSelectedRow();
+        // invoke the table model
+        DefaultTableModel tblModel = (DefaultTableModel)tblDoctorDetails.getModel();
+        // get value from respective fields and set it to String Attributes
+        txtDoctorName.setText(tblModel.getValueAt(i, 0).toString());
+        txtDoctorId.setText(tblModel.getValueAt(i, 1).toString());
+        jComboBoxGender.setSelectedItem(tblModel.getValueAt(i, 2).toString());
+        jComboBoxSpecialization.setSelectedItem(tblModel.getValueAt(i, 3).toString());
+        jComboBoxDoctorExperience.setSelectedItem(tblModel.getValueAt(i, 4).toString());
+        txtDoctorPhone.setText(tblModel.getValueAt(i, 5).toString());
+       
+    }//GEN-LAST:event_tblDoctorDetailsMouseClicked
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // CANCEL or CLEAR button code here:
+        // call function to clear input fields
+        clearfields();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void jComboBoxGenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxGenderActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxGenderActionPerformed
+
+    private void btnDeleteDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteDoctorActionPerformed
+        // DELETE code here:
+        int selectedRowIndex = tblDoctorDetails.getSelectedRow();
+        
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        // invoke the table model
+        DefaultTableModel tblModel = (DefaultTableModel) tblDoctorDetails.getModel();
+        Doctor selectedDoctor = (Doctor) tblModel.getValueAt(selectedRowIndex, 0);
+        directory1.deleteDoctor(selectedDoctor);
+        JOptionPane.showMessageDialog(this, "Doctor data successfully deleted from the doctor directory");
+         
+        populateTable();
+        
+    }//GEN-LAST:event_btnDeleteDoctorActionPerformed
+
+    private void BtnHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnHomeMouseClicked
+        // HOME button mouse clicked code here:
+        MainJFrame obj = new MainJFrame();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_BtnHomeMouseClicked
+
+    private void BtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHomeActionPerformed
+        // HOME button action performed code here:
+        MainJFrame obj = new MainJFrame();
+        obj.setVisible(true);
+        //dispose();
+    }//GEN-LAST:event_BtnHomeActionPerformed
+
+    private void btnHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHospitalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHospitalActionPerformed
+
+    private void btnDoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDoctorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDoctorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -81,13 +563,86 @@ public class CreateDoctor extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateDoctor().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new CreateDoctor().setVisible(true);
         });
     }
+    
+    private void clearfields(){
+        txtDoctorName.setText("");
+        txtDoctorId.setText("");
+        txtDoctorPhone.setText("");
+        
+    }
+    private void populateTable() {
+        //invoke the table model
+        DefaultTableModel tblmodel = (DefaultTableModel) tblDoctorDetails.getModel();
+        tblmodel.setRowCount(0);
 
+        for (Doctor doctor : directory1.getDirectory()) {
+            
+
+            Object[] row = new Object[6];
+            row[0] = doctor;
+            row[1] = doctor.getDoctorId();
+            row[2] = doctor.getDoctorGender();
+            row[3] = doctor.getDoctorSpecialization();
+            row[4] = doctor.getDoctorExperience();
+            row[5] = doctor.getDoctorPhone();
+            
+            tblmodel.addRow(row);
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnHome;
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDeleteDoctor;
+    private javax.swing.JButton btnDoctor;
+    private javax.swing.JButton btnHospital;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdateDoctor;
+    private javax.swing.JButton btnViewDoctor;
+    private javax.swing.JComboBox<String> jComboBoxDoctorExperience;
+    private javax.swing.JComboBox<String> jComboBoxGender;
+    private javax.swing.JComboBox<String> jComboBoxSpecialization;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel lblAddNewDoctor;
+    private javax.swing.JLabel lblDoctorDatabase;
+    private javax.swing.JLabel lblDoctorExperience;
+    private javax.swing.JLabel lblDoctorGender;
+    private javax.swing.JLabel lblDoctorId;
+    private javax.swing.JLabel lblDoctorName;
+    private javax.swing.JLabel lblDoctorPhone;
+    private javax.swing.JLabel lblDoctorSpecialization;
+    private javax.swing.JLabel lblDoctorlDetails;
+    private javax.swing.JPanel splitPane;
+    private javax.swing.JTable tblDoctorDetails;
+    private javax.swing.JTextField txtDoctorId;
+    private javax.swing.JTextField txtDoctorName;
+    private javax.swing.JTextField txtDoctorPhone;
     // End of variables declaration//GEN-END:variables
+
+    private void populateDetails(JTable tblDoctorDetails) {
+        int selectedRowIndex = tblDoctorDetails.getSelectedRow();
+
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to view");
+            return;
+        }
+        DefaultTableModel tblmodel = (DefaultTableModel) tblDoctorDetails.getModel();
+        Doctor selectedDoctor = (Doctor) tblmodel.getValueAt(selectedRowIndex, 0);
+
+        txtDoctorName.setText(selectedDoctor.getDoctorName());
+        txtDoctorId.setText(selectedDoctor.getDoctorId());
+        jComboBoxGender.setSelectedItem(selectedDoctor.getDoctorGender());
+        jComboBoxSpecialization.setSelectedItem(selectedDoctor.getDoctorSpecialization());
+        jComboBoxDoctorExperience.setSelectedItem(selectedDoctor.getDoctorExperience());
+        txtDoctorPhone.setText(selectedDoctor.getDoctorPhone());
+       
+    }
 }
